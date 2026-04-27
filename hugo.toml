@@ -1,0 +1,80 @@
+baseURL = 'https://blog.itong.me/'
+languageCode = "zh-cn"
+title = 'iTong'
+theme = 'PaperMod'
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+
+# URL 结构
+[permalinks]
+posts = "/:year/:month/:slug/"
+
+
+# 搜索功能需要
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[params]
+env = "production"
+title = "iTong"
+description = "iTong 的个人博客，记录学习和生活的点滴。"
+author = "iTong"
+defaultTheme = "auto"
+ShowReadingTime = true                  # 阅读时间
+ShowShareButtons = false                # 分享按钮（不需要可关）
+ShowCodeCopyButtons = true              # 代码复制按钮
+ShowToc = true                          # 文章目录
+TocOpen = false                         # 目录默认折叠
+ShowBreadCrumbs = true                  # 面包屑导航
+ShowPostNavLinks = true                 # 上下篇导航
+ShowWordCount = true                    # 字数统计
+disableScrollToTop = false
+
+[params.fuseOpts]
+isCaseSensitive = false
+shouldSort = true
+location = 0
+distance = 1000
+threshold = 0.3
+minMatchCharLength = 1
+keys = ["title", "permalink", "summary", "content"]
+
+[params.profileMode]
+enabled = false
+
+[[menu.main]]
+identifier = "posts"
+name = "文章"
+url = "/posts/"
+weight = 10
+
+[[menu.main]]
+identifier = "tags"
+name = "标签"
+url = "/tags/"
+weight = 20
+
+[[menu.main]]
+identifier = "archives"
+name = "归档"
+url = "/archives/"
+weight = 30
+
+[[menu.main]]
+identifier = "search"
+name = "搜索"
+url = "/search/"
+weight = 40
+
+# 代码高亮
+[markup]
+[markup.highlight]
+noClasses = false
+codeFences = true
+guessSyntax = true
+lineNos = false
+style = "monokai"
+[markup.goldmark.renderer]
+unsafe = true # 允许 Markdown 里写 HTML
