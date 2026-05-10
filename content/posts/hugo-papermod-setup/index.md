@@ -498,22 +498,12 @@ Discussions 页 → 左侧 Categories 旁边的铅笔图标 → New category：
 comments = true
 ```
 
-PaperMod 的 `single.html` 里有 v }}{{- partial "comments.html" . }}` 这段逻辑，开关靠这个 flag。想关掉某篇文章评论，在该文章 frontmatter 加 `comments: false` 即可（frontmatter 优先级高于 site params）。
+PaperMod 的 `single.html` 里有 `{{- partial "comments.html" . }}` 这段逻辑，开关靠这个 flag。想关掉某篇文章评论，在该文章 frontmatter 加 `comments: false` 即可（frontmatter 优先级高于 site params）。
 
 **6. 验证**
 
 `hugo server -D`，打开任意一篇文章滚到底，应该看到 Giscus 评论区。**Giscus 会在第一次访问每篇文章时自动在 Discussions 里创建对应 thread**——不需要预先批量创建。
 
-## 总结
+## EOF
 
-最小可用形态需要：
-
-- Hugo extended + PaperMod submodule
-- 配好 `hugo.toml` 和 archetype 模板
-- GitHub Actions workflow + GitHub Pages 启用
-- 自定义域名：DNS 服务商加 CNAME + 项目里 `static/CNAME` + Settings 里填域名
-
-加分项：
-
-- Typora 配好图片自动落盘
-- Giscus 评论（基于 GitHub Discussions，零后端）
+到这里整个搭建过程就结束了，剩下要面对的是"写什么"这个真正的难题。
