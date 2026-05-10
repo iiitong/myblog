@@ -1,0 +1,69 @@
+# ============================================
+# pre-commit 配置
+# 安装: brew install pre-commit && make install-hooks
+# 手动跑: make check
+# 跳过单次: git commit --no-verify
+# ============================================
+
+repos:
+  # ===== 基础检查 =====
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ['--maxkb=2000']
+        name: 检查大文件 (>2MB)
+
+      - id: check-merge-conflict
+        name: 检查合并冲突标记
+
+      - id: check-yaml
+        name: 检查 YAML 语法
+        args: ['--allow-multiple-documents']
+
+      - id: check-toml
+        name: 检查 TOML 语法
+
+      - id: detect-private-key
+        name: 检测私钥泄露 (PEM/SSH)
+
+      - id: end-of-file-fixer
+        name: 修复文件末尾换行
+        exclude: '\.(png|jpg|jpeg|gif|webp|ico|pdf)$'
+
+      - id: trailing-whitespace
+        name: 去除行尾空格
+        exclude: '\.(png|jpg|jpeg|gif|webp|ico|pdf)$'
+        args: ['--markdown-linebreak-ext=md']
+
+      - id: check-case-conflict
+        name: 检查文件名大小写冲突
+
+  # ===== 全面密钥检测（AWS / GitHub / OpenAI 等 30+ 种）=====
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        name: 检测各类密钥/Token 泄露
+        args: ['--baseline', '.secrets.baseline']
+        # 排除主题和构建产物
+        exclude: ^(themes/|public/|resources/)
+
+  # ===== 英文拼写检查 =====
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.2
+    hooks:
+      - id: codespell
+        name: 英文拼写检查
+        files: \.(md|toml|yaml|yml)$
+        args: ['--ignore-words-list=hist,nd,ans,crate']
+
+  # ===== Hugo 构建检查 =====
+  - repo: local
+    hooks:
+      - id: hugo-build
+        name: Hugo 构建检查
+        entry: hugo --gc --minify --quiet
+        language: system
+        pass_filenames: false
+        always_run: true

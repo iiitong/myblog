@@ -1,5 +1,8 @@
 baseURL = 'https://blog.itong.me/'
+# 语言代码设置为中文
 languageCode = "zh-cn"
+# 默认语言设置
+defaultContentLanguage = "zh"
 title = 'iTong'
 theme = 'PaperMod'
 
@@ -10,7 +13,6 @@ buildFuture = false
 # URL 结构
 [permalinks]
 posts = "/:year/:month/:slug/"
-
 
 # 搜索功能需要
 [outputs]
@@ -31,6 +33,8 @@ ShowBreadCrumbs = true                  # 面包屑导航
 ShowPostNavLinks = true                 # 上下篇导航
 ShowWordCount = true                    # 字数统计
 disableScrollToTop = false
+disableSpecial1stPost = true            # 关掉首篇放大
+comments = true                         # 启用评论（Giscus，见 layouts/partials/comments.html）
 
 [params.fuseOpts]
 isCaseSensitive = false
@@ -67,6 +71,12 @@ identifier = "search"
 name = "搜索"
 url = "/search/"
 weight = 40
+
+[[menu.main]]
+identifier = "about"
+name = "关于"
+url = "/about/"
+weight = 50
 
 # 代码高亮
 [markup]

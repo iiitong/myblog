@@ -2,7 +2,7 @@
 date = '2026-04-27T12:59:57+08:00'
 draft = false
 title = 'Hello World'
-tagas = ['杂记']
+tags = ['杂记']
 categories = ['随笔']
 +++
 
