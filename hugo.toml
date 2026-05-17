@@ -88,3 +88,6 @@ lineNos = false
 style = "monokai"
 [markup.goldmark.renderer]
 unsafe = true # 允许 Markdown 里写 HTML
+
+[services.googleAnalytics]
+ID = "G-HD4VJ6Q918"
